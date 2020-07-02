@@ -21,7 +21,11 @@ Bugs:
 
 Extra resources:
 https://www.oreilly.com/library/view/full-stack-serverless/9781492059882/ch04.html
+
 https://medium.com/better-programming/build-a-react-app-with-authentication-using-aws-amplify-49db1dfdc290
+
 https://medium.com/better-programming/build-a-react-app-using-aws-amplify-in-simple-steps-part-2-59812ea29192
+
 https://medium.com/faun/build-a-real-life-serverless-app-with-aws-amplify-c78fa266ee08
+
 https://read.acloud.guru/8-steps-to-building-your-own-serverless-graphql-api-using-aws-amplify-42c21770424d
