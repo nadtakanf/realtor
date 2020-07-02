@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-realtorwebsite-dev-215007-authRole",
+            "UnauthRoleArn": "arn:aws:iam::844978381282:role/amplify-realtorwebsite-dev-215007-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::844978381282:role/amplify-realtorwebsite-dev-215007-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-realtorwebsite-dev-215007-deployment",
+            "UnauthRoleName": "amplify-realtorwebsite-dev-215007-unauthRole",
+            "StackName": "amplify-realtorwebsite-dev-215007",
+            "StackId": "arn:aws:cloudformation:us-east-1:844978381282:stack/amplify-realtorwebsite-dev-215007/83c62370-bc1f-11ea-8fa2-0aa554d91bcc",
+            "AmplifyAppId": "d2nsn7lmunibnt"
+        },
+        "categories": {
+            "auth": {
+                "realtorwebsited1b77f88": {}
+            }
+        }
+    }
+}

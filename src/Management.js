@@ -5,7 +5,13 @@ import { API, graphqlOperation, Auth} from 'aws-amplify';
 import { listRealtors } from './graphql/queries';
 import { onCreateRealtor } from './graphql/subscriptions';
 import { createRealtor as CreateRealtor, deleteRealtor as DeleteRealtor, updateRealtor as UpdateRealtor } from './graphql/mutations';
-import { List, Input, Button } from 'antd';
+import { List, Input, Button, Upload } from 'antd';
+import Container from './Container'
+import { UploadOutlined } from '@ant-design/icons';
+
+// TODO:
+// 1. photos need to upload to s3
+// 2. get files name and store as arrays in photos
 
 const initState = {
 	realtors: [],
@@ -29,8 +35,30 @@ const initState = {
 	}
 }
 
+const props = {
+  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  transformFile(file) {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const canvas = document.createElement('canvas');
+        const img = document.createElement('img');
+        img.src = reader.result;
+        img.onload = () => {
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          ctx.fillStyle = 'red';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('Ant Design', 20, 20);
+          canvas.toBlob(resolve);
+        };
+      };
+    });
+  },
+};
+
 const styles = {
-	container: {padding: 20},
 	input: {marginBottom: 10},
 	item: {textAligh: 'left'},
 	p: {color: '#1890ff'},
@@ -52,7 +80,6 @@ function App() {
 		CLIENT_ID = payload.sub;
 	}
 
-	// what is dispatch & what is reducer
 	const [state, dispatch] = useReducer(reducer, initState);
 
 	async function fetchRealtor() {
@@ -156,8 +183,8 @@ function App() {
 	return (
 		<div >
 			<AmplifySignOut />
-			<div style={styles.container}>
-			<h5>REALTOR WEBSITE</h5>
+			<Container>
+			<h1>REALTOR WEBSITE</h1>
 			<Input 
 				onChange={onChange}
 				value={state.form.street1}
@@ -207,7 +234,6 @@ function App() {
 				name="salesPrice"
 				style={styles.input}
 			/>
-
 			<Input 
 				onChange={onChange}
 				value={state.form.bedrooms}
@@ -215,11 +241,16 @@ function App() {
 				name="bedrooms"
 				style={styles.input}
 			/>
+			<Upload {...props}>
+				<Button>
+					<UploadOutlined /> Upload
+				</Button>
+			</Upload>
 			<Input 
 				onChange={onChange}
-				value={state.form.photos}
-				placeholder="photos"
-				name="photos"
+				value={state.form.bathrooms}
+				placeholder="Bathrooms"
+				name="bathrooms"
 				style={styles.input}
 			/>
 			<Input 
@@ -253,14 +284,14 @@ function App() {
 			<Button
 				onClick={createRealtor}
 				type="primary"
-			>Create Realtor</Button>
+			>Create</Button>
 
 			<List 
 				loading={state.loading}
 				dataSource={state.realtors}
 				renderItem={renderItem}
 			/>
-			</div>
+			</Container>
 		</div>
 	)
 }

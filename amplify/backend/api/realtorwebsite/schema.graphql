@@ -1,0 +1,19 @@
+type Realtor @model {
+  id: ID!
+	clientId: ID
+  street1: String
+	street2: String
+	city: String
+	state: String
+	zipcode: String
+	neighborhood: String
+	salesPrice: String
+	dateListed: String
+	bedrooms: String
+	photos: String
+	bathrooms: String
+	garageSize: String
+	squareFeet: String
+	lotSize: String
+	description: String
+}
